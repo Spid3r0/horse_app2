@@ -9,7 +9,7 @@ import 'main_panel.dart';
 
 
 Future<void> main() async {
-  //runApp(const MyApp());
+   runApp(const MyApp());
    WidgetsFlutterBinding.ensureInitialized();
 
    HorseDatabaseProvider horseDatabaseProvider = HorseDatabaseProvider();
