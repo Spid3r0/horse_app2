@@ -7,18 +7,25 @@ import 'data/Model/Horse.dart';
 import 'data/database/horse_database_provider.dart';
 import 'main_panel.dart';
 
-
 Future<void> main() async {
   //runApp(const MyApp());
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
-   HorseDatabaseProvider horseDatabaseProvider = HorseDatabaseProvider();
-   List<Horse> userList = [];
-   userList = await horseDatabaseProvider.getList();
-   print(userList[0].name);
-
-
-
+  HorseDatabaseProvider horseDatabaseProvider = HorseDatabaseProvider();
+  List<Horse> userList = [];
+  //print(userList[0].name);
+  Horse horse = await horseDatabaseProvider.getItem(2);
+  print(horse.name);
+  Horse horseOne = new Horse();
+  horseOne.name = "Utkunun götü";
+  horseOne.type = "Kuru";
+  horseOne.speed = 31;
+  horseOne.stamina =31;
+  horseDatabaseProvider.insertItem(horseOne, horseDatabaseProvider.tableName);
+  userList = await horseDatabaseProvider.getList();
+  for (var value in userList) {
+    print(value.name);
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -29,7 +36,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   final _pageController = PageController(
     initialPage: 0,
   );
@@ -53,7 +59,7 @@ class _MyAppState extends State<MyApp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: Color(0xff444444),
@@ -83,9 +89,9 @@ class _MyAppState extends State<MyApp> {
                           decoration: BoxDecoration(
                             color: Colors.grey,
                             boxShadow: [
-                              BoxShadow(color: Colors.redAccent, spreadRadius: 3)
+                              BoxShadow(
+                                  color: Colors.redAccent, spreadRadius: 3)
                             ],
-                            
                           ),
                           child: Row(
                             children: [
@@ -102,9 +108,9 @@ class _MyAppState extends State<MyApp> {
                           decoration: BoxDecoration(
                             color: Colors.grey,
                             boxShadow: [
-                              BoxShadow(color: Colors.redAccent, spreadRadius: 3)
+                              BoxShadow(
+                                  color: Colors.redAccent, spreadRadius: 3)
                             ],
-
                           ),
                           child: Row(
                             children: [
@@ -112,7 +118,10 @@ class _MyAppState extends State<MyApp> {
                                 Icons.trending_down,
                                 color: Colors.red,
                               ),
-                              Container(child: Text('20'),padding: EdgeInsets.symmetric(horizontal: 5),),
+                              Container(
+                                child: Text('20'),
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                              ),
                             ],
                           ),
                         ),
@@ -121,9 +130,9 @@ class _MyAppState extends State<MyApp> {
                           decoration: BoxDecoration(
                             color: Colors.grey,
                             boxShadow: [
-                              BoxShadow(color: Colors.redAccent, spreadRadius: 3)
+                              BoxShadow(
+                                  color: Colors.redAccent, spreadRadius: 3)
                             ],
-
                           ),
                           child: LinearPercentIndicator(
                             width: 100,
@@ -144,10 +153,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ],
             ),
-
-
             Expanded(
-
               child: Container(
                 padding: EdgeInsets.only(bottom: 10),
                 child: PageView(
@@ -159,16 +165,15 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             ),
-
-
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: Color(0xff7c7c7c),
-                boxShadow: [BoxShadow(color: Color(0xffb7a9a9), spreadRadius: 3)],
+                boxShadow: [
+                  BoxShadow(color: Color(0xffb7a9a9), spreadRadius: 3)
+                ],
               ),
               padding: EdgeInsets.only(top: 10, bottom: 10),
-
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
