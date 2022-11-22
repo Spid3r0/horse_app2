@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'database_model.dart';
 
 abstract class DatabaseProvider<T extends DatabaseModel> {
-  String databaseName = "deneme.db";
+
 
   Future open();
 
