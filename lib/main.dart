@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:horse_app2/data/Model/User.dart';
 import 'package:horse_app2/data/database/user_database_provider.dart';
+import 'package:horse_app2/view/stable.dart';
 
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:horse_app2/stable.dart';
+
 import 'package:sqflite/sqflite.dart';
 import 'data/Model/Horse.dart';
 import 'data/database/horse_database_provider.dart';
-import 'main_panel.dart';
+import 'view/main_panel.dart';
+
 
 Future<void> main() async {
   //runApp(const MyApp());
