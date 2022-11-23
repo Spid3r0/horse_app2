@@ -9,10 +9,7 @@ class Stadium extends DatabaseModel<Stadium>{
   Stadium({this.id, this.name, this.lenght, this.groundType});
 
   Stadium.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    lenght = json['lenght'];
-    groundType = json['groundType'];
+    fromJson(json);
   }
 
   Map<String, dynamic> toJson() {
@@ -26,7 +23,10 @@ class Stadium extends DatabaseModel<Stadium>{
 
   @override
   Stadium fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
+    id = json['id'];
+    name = json['name'];
+    lenght = json['lenght'];
+    groundType = json['groundType'];
+    return this;
   }
 }

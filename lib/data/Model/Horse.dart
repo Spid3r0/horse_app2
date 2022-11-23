@@ -19,13 +19,7 @@ class Horse extends DatabaseModel<Horse>{
         this.raceId});
 
   Horse.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    type = json['type'];
-    speed = json['speed'];
-    stamina = json['stamina'];
-    userId = json['userId'];
-    raceId = json['raceId'];
+    fromJson(json);
   }
 
   Map<String, dynamic> toJson() {
@@ -41,7 +35,13 @@ class Horse extends DatabaseModel<Horse>{
   }
   @override
   Horse fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
+    id = json['id'];
+    name = json['name'];
+    type = json['type'];
+    speed = json['speed'];
+    stamina = json['stamina'];
+    userId = json['userId'];
+    raceId = json['raceId'];
+    return this;
   }
 }

@@ -11,10 +11,7 @@ class Jockey extends DatabaseModel<Jockey>{
   Jockey({this.id, this.name, this.exp, this.horse});
 
   Jockey.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    exp = json['exp'];
-    horse = json['horse'] != null ? new Horse.fromJson(json['horse']) : null;
+    fromJson(json);
   }
 
   Map<String, dynamic> toJson() {
@@ -30,7 +27,10 @@ class Jockey extends DatabaseModel<Jockey>{
 
   @override
   Jockey fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
+    id = json['id'];
+    name = json['name'];
+    exp = json['exp'];
+    horse = json['horse'] != null ? new Horse.fromJson(json['horse']) : null;
+    return this;
   }
 }

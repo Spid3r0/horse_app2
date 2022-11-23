@@ -23,7 +23,7 @@ abstract class DatabaseProvider<T extends DatabaseModel> {
     );
   }
 
-  Future<T> getItem(int id);
+  Future<T> getItemById(int id);
 
   Future<List<T>> getList();
 

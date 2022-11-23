@@ -13,20 +13,20 @@ class StadiumDatabaseProvider extends DatabaseProvider<Stadium> {
   String column_ground = "ground";
 
   @override
-  Future<Stadium> getItem(int id) async{
+  Future<Stadium> getItemById(int id) async{
     final database = await open();
-    List<Map<String, dynamic>> questionMaps = await database.rawQuery(
+    List<Map<String, dynamic>> dbResult = await database.rawQuery(
         'SELECT * FROM $tableName WHERE id=?',
         [id]
     );
-    return questionMaps.map((e) => Stadium().fromJson(e)).toList().first;
+    return dbResult.map((e) => Stadium().fromJson(e)).toList().first;
   }
 
   @override
   Future<List<Stadium>> getList() async{
     final database = await open();
-    List<Map<String, dynamic>> questionMaps = await database.query(tableName);
-    return questionMaps.map((e) => Stadium().fromJson(e)).toList();
+    List<Map<String, dynamic>> dbResult = await database.query(tableName);
+    return dbResult.map((e) => Stadium().fromJson(e)).toList();
   }
 
   @override

@@ -15,20 +15,38 @@ class HorseDatabaseProvider extends DatabaseProvider<Horse> {
   String column_raceId = "raceId";
 
   @override
-  Future<Horse> getItem(int id) async{
+  Future<Horse> getItemById(int id) async{
     final database = await open();
-    List<Map<String, dynamic>> questionMaps = await database.rawQuery(
+    List<Map<String, dynamic>> dbResult = await database.rawQuery(
       'SELECT * FROM $tableName WHERE id=?',
       [id]
     );
-    return questionMaps.map((e) => Horse.fromJson(e)).toList().first;
+    return dbResult.map((e) => Horse.fromJson(e)).toList().first;
+  }
+
+  Future<Horse> getItemByUser(int userId) async{
+    final database = await open();
+    List<Map<String, dynamic>> dbResult = await database.rawQuery(
+        'SELECT * FROM $tableName WHERE userId=?',
+        [userId]
+    );
+    return dbResult.map((e) => Horse.fromJson(e)).toList().first;
+  }
+
+  Future<Horse> getItemByRace(int raceId) async{
+    final database = await open();
+    List<Map<String, dynamic>> dbResult = await database.rawQuery(
+        'SELECT * FROM $tableName WHERE raceId=?',
+        [raceId]
+    );
+    return dbResult.map((e) => Horse.fromJson(e)).toList().first;
   }
 
   @override
   Future<List<Horse>> getList() async {
     final database = await open();
-    List<Map<String, dynamic>> questionMaps = await database.query(tableName);
-    return questionMaps.map((e) => Horse.fromJson(e)).toList();
+    List<Map<String, dynamic>> dbResult = await database.query(tableName);
+    return dbResult.map((e) => Horse.fromJson(e)).toList();
   }
 
 

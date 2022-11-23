@@ -1,3 +1,5 @@
+import 'package:horse_app2/data/database/horse_database_provider.dart';
+
 import '../database/database_model.dart';
 import 'Horse.dart';
 import 'Jockey.dart';
@@ -10,21 +12,8 @@ class User extends DatabaseModel<User>{
 
   User({this.id, this.name, this.horseList, this.jockeyList});
 
-  User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    if (json['horseList'] != null) {
-      horseList = <Horse>[];
-      json['horseList'].forEach((v) {
-        horseList!.add(new Horse.fromJson(v));
-      });
-    }
-    if (json['jockeyList'] != null) {
-      jockeyList = <Jockey>[];
-      json['jockeyList'].forEach((v) {
-        jockeyList!.add(new Jockey.fromJson(v));
-      });
-    }
+  void initHorseList(HorseDatabaseProvider horseDatabaseProvider) {
+
   }
 
   @override
@@ -45,7 +34,8 @@ class User extends DatabaseModel<User>{
 
   @override
   User fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
+    id = json['id'];
+    name = json['name'];
+    return this;
   }
 }

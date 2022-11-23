@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:horse_app2/data/Model/User.dart';
+import 'package:horse_app2/data/database/user_database_provider.dart';
 
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:horse_app2/stable.dart';
@@ -13,19 +15,25 @@ Future<void> main() async {
 
   HorseDatabaseProvider horseDatabaseProvider = HorseDatabaseProvider();
   List<Horse> userList = [];
-  //print(userList[0].name);
-  Horse horse = await horseDatabaseProvider.getItem(2);
+  Horse horse = await horseDatabaseProvider.getItemById(2);
   print(horse.name);
-  Horse horseOne = new Horse();
-  horseOne.name = "Utkunun götü";
-  horseOne.type = "Kuru";
-  horseOne.speed = 31;
-  horseOne.stamina =31;
-  horseDatabaseProvider.insertItem(horseOne, horseDatabaseProvider.tableName);
-  userList = await horseDatabaseProvider.getList();
-  for (var value in userList) {
-    print(value.name);
-  }
+  // Horse horseOne = new Horse();
+  // horseOne.name = "Utkunun götü";
+  // horseOne.type = "Kuru";
+  // horseOne.speed = 31;
+  // horseOne.stamina =31;
+  // horseDatabaseProvider.insertItem(horseOne, horseDatabaseProvider.tableName);
+  // userList = await horseDatabaseProvider.getList();
+  // for (var value in userList) {
+  //   print(value.name);
+  // }
+
+  User user = new User();
+  UserDatabaseProvider userDatabaseProvider = new UserDatabaseProvider();
+  user = await userDatabaseProvider.getItemById(1);
+  print(user.name);
+
+
 }
 
 class MyApp extends StatefulWidget {

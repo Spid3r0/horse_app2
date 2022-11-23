@@ -20,18 +20,7 @@ class HorseRace extends DatabaseModel<HorseRace>{
         this.horseList});
 
   HorseRace.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    horseTypesAllowed = json['horseTypesAllowed'].cast<String>();
-    moneyPrize = json['moneyPrize'];
-    entryFee = json['entryFee'];
-    horseCapacity = json['horseCapacity'];
-    if (json['horseList'] != null) {
-      horseList = <Horse>[];
-      json['horseList'].forEach((v) {
-        horseList!.add(new Horse.fromJson(v));
-      });
-    }
+    fromJson(json);
   }
 
   Map<String, dynamic> toJson() {
@@ -50,7 +39,18 @@ class HorseRace extends DatabaseModel<HorseRace>{
 
   @override
   HorseRace fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
+    id = json['id'];
+    name = json['name'];
+    horseTypesAllowed = json['horseTypesAllowed'].cast<String>();
+    moneyPrize = json['moneyPrize'];
+    entryFee = json['entryFee'];
+    horseCapacity = json['horseCapacity'];
+    if (json['horseList'] != null) {
+      horseList = <Horse>[];
+      json['horseList'].forEach((v) {
+        horseList!.add(new Horse.fromJson(v));
+      });
+    }
+    return this;
   }
 }
