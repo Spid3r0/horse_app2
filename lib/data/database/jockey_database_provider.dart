@@ -24,13 +24,13 @@ class JockeyDatabaseProvider extends DatabaseProvider<Jockey> {
   }
 
   @override
-  Future<Jockey> getItemByUserId (int userId) async{
+  Future<List<Jockey>> getItemByUserId (int userId) async{
     final database = await open();
     List<Map<String, dynamic>> dbResult = await database.rawQuery(
         'SELECT * FROM $tableName WHERE userId=?',
         [userId]
     );
-    return dbResult.map((e) => Jockey().fromJson(e)).toList().first;
+    return dbResult.map((e) => Jockey().fromJson(e)).toList();
   }
 
   @override

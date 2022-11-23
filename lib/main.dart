@@ -14,7 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   HorseDatabaseProvider horseDatabaseProvider = HorseDatabaseProvider();
-  List<Horse> userList = [];
+  List<Horse> horseList = [];
   Horse horse = await horseDatabaseProvider.getItemById(2);
   print(horse.name);
   // Horse horseOne = new Horse();
@@ -23,8 +23,8 @@ Future<void> main() async {
   // horseOne.speed = 31;
   // horseOne.stamina =31;
   // horseDatabaseProvider.insertItem(horseOne, horseDatabaseProvider.tableName);
-  // userList = await horseDatabaseProvider.getList();
-  // for (var value in userList) {
+  // horseList = await horseDatabaseProvider.getList();
+  // for (var value in horseList) {
   //   print(value.name);
   // }
 
@@ -32,7 +32,7 @@ Future<void> main() async {
   UserDatabaseProvider userDatabaseProvider = new UserDatabaseProvider();
   user = await userDatabaseProvider.getItemById(1);
   print(user.name);
-
+  user.initHorseList(horseDatabaseProvider);
 
 }
 

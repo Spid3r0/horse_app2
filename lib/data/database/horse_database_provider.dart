@@ -24,22 +24,22 @@ class HorseDatabaseProvider extends DatabaseProvider<Horse> {
     return dbResult.map((e) => Horse.fromJson(e)).toList().first;
   }
 
-  Future<Horse> getItemByUser(int userId) async{
+  Future<List<Horse>> getItemByUser(int userId) async{
     final database = await open();
     List<Map<String, dynamic>> dbResult = await database.rawQuery(
         'SELECT * FROM $tableName WHERE userId=?',
         [userId]
     );
-    return dbResult.map((e) => Horse.fromJson(e)).toList().first;
+    return dbResult.map((e) => Horse.fromJson(e)).toList();
   }
 
-  Future<Horse> getItemByRace(int raceId) async{
+  Future<List<Horse>> getItemByRace(int raceId) async{
     final database = await open();
     List<Map<String, dynamic>> dbResult = await database.rawQuery(
         'SELECT * FROM $tableName WHERE raceId=?',
         [raceId]
     );
-    return dbResult.map((e) => Horse.fromJson(e)).toList().first;
+    return dbResult.map((e) => Horse.fromJson(e)).toList();
   }
 
   @override

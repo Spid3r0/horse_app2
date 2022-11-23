@@ -1,4 +1,5 @@
 import 'package:horse_app2/data/database/horse_database_provider.dart';
+import 'package:horse_app2/data/database/jockey_database_provider.dart';
 
 import '../database/database_model.dart';
 import 'Horse.dart';
@@ -7,13 +8,17 @@ import 'Jockey.dart';
 class User extends DatabaseModel<User>{
   int? id;
   String? name;
-  List<Horse>? horseList;
+  List<Horse>? horseList = [];
   List<Jockey>? jockeyList;
 
   User({this.id, this.name, this.horseList, this.jockeyList});
 
-  void initHorseList(HorseDatabaseProvider horseDatabaseProvider) {
+  Future<void> initHorseList(HorseDatabaseProvider horseDatabaseProvider) async {
+    horseList = await horseDatabaseProvider.getItemByUser(id!);
+  }
 
+  Future<void> initJockeyList(JockeyDatabaseProvider jockeyDatabaseProvider) async {
+    jockeyList = await jockeyDatabaseProvider.getItemByUserId(id!);
   }
 
   @override
